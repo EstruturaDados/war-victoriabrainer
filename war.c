@@ -15,12 +15,19 @@
 // ============================================================================
 
 // Inclusão das bibliotecas padrão necessárias para entrada/saída, alocação de memória, manipulação de strings e tempo.
+#include <stdio.h>
+#include <string.h>
 
 // --- Constantes Globais ---
 // Definem valores fixos para o número de territórios, missões e tamanho máximo de strings, facilitando a manutenção.
 
 // --- Estrutura de Dados ---
 // Define a estrutura para um território, contendo seu nome, a cor do exército que o domina e o número de tropas.
+typedef struct {
+    char nome[30];
+    char cor[10];
+    int tropas;
+} Territorio;
 
 // --- Protótipos das Funções ---
 // Declarações antecipadas de todas as funções que serão usadas no programa, organizadas por categoria.
@@ -50,6 +57,35 @@ int main() {
 
     // 3. Limpeza:
     // - Ao final do jogo, libera a memória alocada para o mapa para evitar vazamentos de memória.
+
+    Territorio territorios[5]; // Array estático para 5 territórios
+
+    // Cadastro dos 5 territórios
+    printf("============ Cadastro de Territorios ============\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Territorio %d:\n", i + 1);
+
+        printf("Nome: ");
+        scanf(" %29[^\n]", territorios[i].nome); // lê string com espaços
+
+        printf("Cor do Exercito: ");
+        scanf(" %9[^\n]", territorios[i].cor); // lê string com espaços
+
+        printf("Numero de Tropas: ");
+        scanf("%d", &territorios[i].tropas);
+
+        printf("\n--- Territorio %d ---\n", i + 1);
+    }
+    
+    // Exibe o mapa cadastrado
+    printf("\n============ Mapa Atual ============\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Territorio: %d\n", i + 1);
+        printf(" - Nome: %s\n", territorios[i].nome);
+        printf(" - Cor do Exercito: %s\n", territorios[i].cor);
+        printf(" - Numero de Tropas: %d\n", territorios[i].tropas);
+        printf("==============================\n");
+    }
 
     return 0;
 }
